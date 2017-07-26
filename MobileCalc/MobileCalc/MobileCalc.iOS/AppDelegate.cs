@@ -1,4 +1,5 @@
 ﻿using Foundation;
+using MobileCalc.iOS.Views;
 using UIKit;
 
 namespace MobileCalc.iOS
@@ -17,9 +18,18 @@ namespace MobileCalc.iOS
 
 		public override bool FinishedLaunching (UIApplication application, NSDictionary launchOptions)
 		{
-			// Override point for customization after application launch.
-			// If not required for your application you can safely delete this method
-			return true;
+		    // create a new window instance based on the screen size
+		    Window = new UIWindow(UIScreen.MainScreen.Bounds);
+
+		    // If you have defined a root view controller, set it here:
+		    Window.RootViewController = new MainViewController();
+
+		    // make the window visible
+		    Window.MakeKeyAndVisible();
+			
+            // Override point for customization after application launch.
+            // If not required for your application you can safely delete this method
+            return true;
 		}
 
 		public override void OnResignActivation (UIApplication application)
