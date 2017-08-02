@@ -13,22 +13,38 @@ namespace MobileCalc.Droid
 	public class MainActivity : Activity
 	{
 		int count = 1;
+	    private Button _equals;
 
-		protected override void OnCreate (Bundle bundle)
+	    protected override void OnCreate (Bundle bundle)
 		{
 			base.OnCreate (bundle);
 
-			// Set our view from the "main" layout resource
 			SetContentView (Resource.Layout.Main);
-
-			// Get our button from the layout resource,
-			// and attach an event to it
-			Button button = FindViewById<Button> (Resource.Id.myButton);
-			
-			button.Click += delegate {
-				button.Text = string.Format ("{0} clicks!", count++);
-			};
+			GetViews();
 		}
+
+	    protected override void OnPause()
+	    {
+	        base.OnPause();
+	        _equals.Click -= EqualsOnClick;
+	    }
+
+        protected override void OnResume()
+	    {
+	        base.OnResume();
+            _equals.Click += EqualsOnClick;
+	    }
+
+	    private void EqualsOnClick(object sender, EventArgs eventArgs)
+	    {
+            // todo: do something on equals
+	        //button.Text = string.Format("{0} clicks!", count++);
+	    }
+
+        private void GetViews()
+	    {
+	        _equals = FindViewById<Button>(Resource.Id.equals);
+	    }
 	}
 }
 
