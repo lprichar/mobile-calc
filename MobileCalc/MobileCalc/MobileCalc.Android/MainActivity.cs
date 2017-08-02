@@ -6,11 +6,12 @@ using Android.Runtime;
 using Android.Views;
 using Android.Widget;
 using Android.OS;
+using Android.Support.V7.App;
 
 namespace MobileCalc.Droid
 {
 	[Activity (Label = "MobileCalc.Android", MainLauncher = true, Icon = "@drawable/icon")]
-	public class MainActivity : Activity
+	public class MainActivity : AppCompatActivity
 	{
 		int count = 1;
 	    private Button _equals;
