@@ -70,7 +70,7 @@ namespace MobileCalc.iOS.Views
                 && _equalsButton.Frame.Width == _plusMinusButton.Frame.Width
                 && _equalsButton.Frame.Height == _plusMinusButton.Frame.Height
 
-                && _button1.Frame.Bottom == _plusMinusButton.Frame.Top + 4
+                && _button1.Frame.Bottom == _plusMinusButton.Frame.Top - 4
                 && _button1.Frame.Left == View.Frame.Left
                 && _button1.Frame.Width == _plusMinusButton.Frame.Width
                 && _button1.Frame.Height == _plusMinusButton.Frame.Height
@@ -90,7 +90,7 @@ namespace MobileCalc.iOS.Views
                 && _buttonPlus.Frame.Width == _plusMinusButton.Frame.Width
                 && _buttonPlus.Frame.Height == _plusMinusButton.Frame.Height
 
-                && _button4.Frame.Bottom == _button1.Frame.Top + 4
+                && _button4.Frame.Bottom == _button1.Frame.Top - 4
                 && _button4.Frame.Left == View.Frame.Left
                 && _button4.Frame.Width == _plusMinusButton.Frame.Width
                 && _button4.Frame.Height == _plusMinusButton.Frame.Height
@@ -110,7 +110,7 @@ namespace MobileCalc.iOS.Views
                 && _buttonMinus.Frame.Width == _plusMinusButton.Frame.Width
                 && _buttonMinus.Frame.Height == _plusMinusButton.Frame.Height
 
-                && _button7.Frame.Bottom == _button4.Frame.Top + 4
+                && _button7.Frame.Bottom == _button4.Frame.Top - 4
                 && _button7.Frame.Left == View.Frame.Left
                 && _button7.Frame.Width == _plusMinusButton.Frame.Width
                 && _button7.Frame.Height == _plusMinusButton.Frame.Height
@@ -130,7 +130,7 @@ namespace MobileCalc.iOS.Views
                 && _buttonTimes.Frame.Width == _plusMinusButton.Frame.Width
                 && _buttonTimes.Frame.Height == _plusMinusButton.Frame.Height
 
-                && _buttonCe.Frame.Bottom == _button7.Frame.Top + 4
+                && _buttonCe.Frame.Bottom == _button7.Frame.Top - 4
                 && _buttonCe.Frame.Left == View.Frame.Left
                 && _buttonCe.Frame.Width == _plusMinusButton.Frame.Width
                 && _buttonCe.Frame.Height == _plusMinusButton.Frame.Height
@@ -139,7 +139,7 @@ namespace MobileCalc.iOS.Views
                 && _buttonC.Frame.Left == _buttonCe.Frame.Right + 4
                 && _buttonC.Frame.Width == _plusMinusButton.Frame.Width
                 && _buttonC.Frame.Height == _plusMinusButton.Frame.Height
-                
+
                 && _buttonBackspace.Frame.Bottom == _buttonCe.Frame.Bottom
                 && _buttonBackspace.Frame.Left == _buttonC.Frame.Right + 4
                 && _buttonBackspace.Frame.Width == _plusMinusButton.Frame.Width
