@@ -48,7 +48,7 @@ namespace MobileCalc.iOS.Views
                 _mainLabel.Frame.Top == View.Frame.Top + 40
                 && _mainLabel.Frame.Left == View.Frame.Left + 50
                 && _mainLabel.Frame.Right == View.Frame.Right - 15
-                && _mainLabel.Frame.Height == View.Frame.Height * .167f
+                && _mainLabel.Frame.Height == View.Frame.Height * .167f - 44
 
                 && _plusMinusButton.Frame.Bottom == View.Frame.Bottom
                 && _plusMinusButton.Frame.Left == View.Frame.Left
