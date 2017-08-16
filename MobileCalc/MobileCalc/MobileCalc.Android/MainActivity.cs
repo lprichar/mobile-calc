@@ -7,6 +7,7 @@ using Android.Views;
 using Android.Widget;
 using Android.OS;
 using Android.Support.V7.App;
+using MobileCalc.Services;
 using MobileCalc.ViewModels;
 
 namespace MobileCalc.Droid
@@ -16,7 +17,7 @@ namespace MobileCalc.Droid
 	{
 		int count = 1;
 	    private Button _equals;
-	    private CalculatorViewModel _viewModel = new CalculatorViewModel();
+	    private CalculatorViewModel _viewModel;
 	    private Button _btn1;
 	    private TextView _display;
 	    private Button _btn0;
@@ -27,7 +28,12 @@ namespace MobileCalc.Droid
 		{
 			base.OnCreate (bundle);
 
-			SetContentView (Resource.Layout.Main);
+            // todo: implement a splash screen and call Startup() from there
+            StartupService.Startup();
+
+		    _viewModel = ServiceContainer.Resolve<CalculatorViewModel>();
+
+            SetContentView(Resource.Layout.Main);
 			GetViews();
 		}
 

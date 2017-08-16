@@ -4,6 +4,7 @@ using System.Linq;
 using System.Text;
 using CoreGraphics;
 using Foundation;
+using MobileCalc.Services;
 using MobileCalc.ViewModels;
 using Praeclarum.UI;
 using UIKit;
@@ -12,7 +13,7 @@ namespace MobileCalc.iOS.Views
 {
     public class MainViewController : UIViewController
     {
-        private CalculatorViewModel _viewModel = new CalculatorViewModel();
+        private readonly CalculatorViewModel _viewModel = ServiceContainer.Resolve<CalculatorViewModel>();
 
         private UIButton _plusMinusButton;
         private UILabel _mainLabel;

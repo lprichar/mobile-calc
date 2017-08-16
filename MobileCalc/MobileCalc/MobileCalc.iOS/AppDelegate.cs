@@ -1,5 +1,6 @@
 ﻿using Foundation;
 using MobileCalc.iOS.Views;
+using MobileCalc.Services;
 using UIKit;
 
 namespace MobileCalc.iOS
@@ -21,8 +22,10 @@ namespace MobileCalc.iOS
 		    // create a new window instance based on the screen size
 		    Window = new UIWindow(UIScreen.MainScreen.Bounds);
 
-		    // If you have defined a root view controller, set it here:
-		    Window.RootViewController = new MainViewController();
+		    StartupService.Startup();
+
+            // If you have defined a root view controller, set it here:
+            Window.RootViewController = new MainViewController();
 
 		    // make the window visible
 		    Window.MakeKeyAndVisible();
