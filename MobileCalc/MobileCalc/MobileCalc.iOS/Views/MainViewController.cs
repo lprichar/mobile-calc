@@ -4,6 +4,7 @@ using System.Linq;
 using System.Text;
 using CoreGraphics;
 using Foundation;
+using MobileCalc.ViewModels;
 using Praeclarum.UI;
 using UIKit;
 
@@ -11,6 +12,8 @@ namespace MobileCalc.iOS.Views
 {
     public class MainViewController : UIViewController
     {
+        private CalculatorViewModel _viewModel = new CalculatorViewModel();
+
         private UIButton _plusMinusButton;
         private UILabel _mainLabel;
         private UIButton _zeroButton;
@@ -188,12 +191,41 @@ namespace MobileCalc.iOS.Views
         {
             base.ViewDidAppear(animated);
             _equalsButton.TouchUpInside += EqualsButtonOnTouchUpInside;
+            _zeroButton.TouchUpInside += NumberButtonOnTouchUpInside;
+            _button1.TouchUpInside += NumberButtonOnTouchUpInside;
+            _button2.TouchUpInside += NumberButtonOnTouchUpInside;
+            _button3.TouchUpInside += NumberButtonOnTouchUpInside;
+            _button4.TouchUpInside += NumberButtonOnTouchUpInside;
+            _button5.TouchUpInside += NumberButtonOnTouchUpInside;
+            _button6.TouchUpInside += NumberButtonOnTouchUpInside;
+            _button7.TouchUpInside += NumberButtonOnTouchUpInside;
+            _button8.TouchUpInside += NumberButtonOnTouchUpInside;
+            _button9.TouchUpInside += NumberButtonOnTouchUpInside;
+        }
+
+        private void NumberButtonOnTouchUpInside(object sender, EventArgs eventArgs)
+        {
+            var uiButton = (UIButton)sender;
+            var number = uiButton.Title(UIControlState.Normal);
+            var numberInt = int.Parse(number);
+            _viewModel.PressNumber(numberInt);
+            _mainLabel.Text = _viewModel.Display;
         }
 
         public override void ViewDidDisappear(bool animated)
         {
             base.ViewDidDisappear(animated);
             _equalsButton.TouchUpInside -= EqualsButtonOnTouchUpInside;
+            _zeroButton.TouchUpInside -= NumberButtonOnTouchUpInside;
+            _button1.TouchUpInside -= NumberButtonOnTouchUpInside;
+            _button2.TouchUpInside -= NumberButtonOnTouchUpInside;
+            _button3.TouchUpInside -= NumberButtonOnTouchUpInside;
+            _button4.TouchUpInside -= NumberButtonOnTouchUpInside;
+            _button5.TouchUpInside -= NumberButtonOnTouchUpInside;
+            _button6.TouchUpInside -= NumberButtonOnTouchUpInside;
+            _button7.TouchUpInside -= NumberButtonOnTouchUpInside;
+            _button8.TouchUpInside -= NumberButtonOnTouchUpInside;
+            _button9.TouchUpInside -= NumberButtonOnTouchUpInside;
         }
 
         private int counter = 0;
