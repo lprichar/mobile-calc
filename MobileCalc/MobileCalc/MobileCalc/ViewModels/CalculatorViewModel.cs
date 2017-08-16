@@ -17,6 +17,11 @@
             UpdateDisplay();
         }
 
+        public void PressNumber(string number)
+        {
+            PressNumber(int.Parse(number));
+        }
+
         public void PressNumber(int number)
         {
             _currentNumber = _currentNumber * 10;

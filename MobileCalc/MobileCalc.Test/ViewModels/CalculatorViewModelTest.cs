@@ -15,6 +15,14 @@ namespace MobileCalc.Test.ViewModels
         }
 
         [Test]
+        public void GivenStartup_WhenPressOneAsString_ThenDisplayIsOne()
+        {
+            var calculatorViewModel = new CalculatorViewModel();
+            calculatorViewModel.PressNumber("1");
+            Assert.AreEqual("1", calculatorViewModel.Display);
+        }
+
+        [Test]
         public void GivenStartup_WhenPressOne_ThenDisplayIsOne()
         {
             var calculatorViewModel = new CalculatorViewModel();
@@ -47,7 +55,7 @@ namespace MobileCalc.Test.ViewModels
             calculatorViewModel.PressNumber(1);
             calculatorViewModel.PressClear();
             calculatorViewModel.PressNumber(1);
-            Assert.AreEqual("0", calculatorViewModel.Display);
+            Assert.AreEqual("1", calculatorViewModel.Display);
         }
     }
 }

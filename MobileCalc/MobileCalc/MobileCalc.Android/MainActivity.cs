@@ -55,8 +55,7 @@ namespace MobileCalc.Droid
 	    {
 	        var button = (Button)sender;
 	        var buttonText = button.Text;
-	        var numberPressed = int.Parse(buttonText);
-	        _viewModel.PressNumber(numberPressed);
+	        _viewModel.PressNumber(buttonText);
 	        _display.Text = _viewModel.Display;
 	    }
 

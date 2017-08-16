@@ -207,8 +207,7 @@ namespace MobileCalc.iOS.Views
         {
             var uiButton = (UIButton)sender;
             var number = uiButton.Title(UIControlState.Normal);
-            var numberInt = int.Parse(number);
-            _viewModel.PressNumber(numberInt);
+            _viewModel.PressNumber(number);
             _mainLabel.Text = _viewModel.Display;
         }
 
