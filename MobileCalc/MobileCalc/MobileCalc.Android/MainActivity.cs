@@ -7,6 +7,7 @@ using Android.Views;
 using Android.Widget;
 using Android.OS;
 using Android.Support.V7.App;
+using MobileCalc.ViewModels;
 
 namespace MobileCalc.Droid
 {
@@ -15,6 +16,12 @@ namespace MobileCalc.Droid
 	{
 		int count = 1;
 	    private Button _equals;
+	    private CalculatorViewModel _viewModel = new CalculatorViewModel();
+	    private Button _btn1;
+	    private TextView _display;
+	    private Button _btn0;
+	    private Button _btn2;
+	    private Button _btn3;
 
 	    protected override void OnCreate (Bundle bundle)
 		{
@@ -28,12 +35,29 @@ namespace MobileCalc.Droid
 	    {
 	        base.OnPause();
 	        _equals.Click -= EqualsOnClick;
+	        _btn0.Click -= NumberButtonOnClick;
+	        _btn1.Click -= NumberButtonOnClick;
+	        _btn2.Click -= NumberButtonOnClick;
+	        _btn3.Click -= NumberButtonOnClick;
 	    }
 
         protected override void OnResume()
 	    {
 	        base.OnResume();
             _equals.Click += EqualsOnClick;
+	        _btn0.Click += NumberButtonOnClick;
+	        _btn1.Click += NumberButtonOnClick;
+	        _btn2.Click += NumberButtonOnClick;
+	        _btn3.Click += NumberButtonOnClick;
+        }
+
+	    private void NumberButtonOnClick(object sender, EventArgs eventArgs)
+	    {
+	        var button = (Button)sender;
+	        var buttonText = button.Text;
+	        var numberPressed = int.Parse(buttonText);
+	        _viewModel.PressNumber(numberPressed);
+	        _display.Text = _viewModel.Display;
 	    }
 
 	    private void EqualsOnClick(object sender, EventArgs eventArgs)
@@ -45,6 +69,11 @@ namespace MobileCalc.Droid
         private void GetViews()
 	    {
 	        _equals = FindViewById<Button>(Resource.Id.equals);
+	        _btn0 = FindViewById<Button>(Resource.Id.zero);
+	        _btn1 = FindViewById<Button>(Resource.Id.btn1);
+	        _btn2 = FindViewById<Button>(Resource.Id.btn2);
+	        _btn3 = FindViewById<Button>(Resource.Id.btn3);
+	        _display = FindViewById<TextView>(Resource.Id.display);
 	    }
 	}
 }
