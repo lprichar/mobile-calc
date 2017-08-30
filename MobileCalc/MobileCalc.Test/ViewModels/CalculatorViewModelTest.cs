@@ -79,7 +79,7 @@ namespace MobileCalc.Test.ViewModels
             Assert.AreEqual("2", calculatorViewModel.Display);
         }
 
-        [Test, Ignore("Because it's taking too long to figure out")]
+        [Test]
         public void GivenOnePlusOne_WhenPressPlus_ThenDisplayTwo()
         {
             var calculatorViewModel = new CalculatorViewModel();
@@ -88,6 +88,18 @@ namespace MobileCalc.Test.ViewModels
             calculatorViewModel.PressNumber(1);
             calculatorViewModel.PressPlus();
             Assert.AreEqual("2", calculatorViewModel.Display);
+        }
+
+        [Test]
+        public void GivenOnePlusOnePlus_WhenPressOne_ThenDisplayOne()
+        {
+            var calculatorViewModel = new CalculatorViewModel();
+            calculatorViewModel.PressNumber(1);
+            calculatorViewModel.PressPlus();
+            calculatorViewModel.PressNumber(1);
+            calculatorViewModel.PressPlus();
+            calculatorViewModel.PressNumber(1);
+            Assert.AreEqual("1", calculatorViewModel.Display);
         }
     }
 }

@@ -32,8 +32,16 @@
 
         public void PressPlus()
         {
-            _storedNumber = _currentNumber;
-            _currentNumber = 0;
+            if (_storedNumber == 0)
+            {
+                _storedNumber = _currentNumber;
+                _currentNumber = 0;
+            }
+            else
+            {
+                PressEquals();
+                _currentNumber = 0;
+            }
         }
 
         private void UpdateDisplay()
