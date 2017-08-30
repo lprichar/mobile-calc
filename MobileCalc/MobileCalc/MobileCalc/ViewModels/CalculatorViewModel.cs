@@ -1,14 +1,10 @@
-﻿using System.ComponentModel;
-using System.Runtime.CompilerServices;
-
-namespace MobileCalc.ViewModels
+﻿namespace MobileCalc.ViewModels
 {
-    public class CalculatorViewModel : INotifyPropertyChanged
+    public class CalculatorViewModel : ViewModelBase
     {
-        public string Display { get; set; }
+        public string Display { get; private set; }
         private int _currentNumber = 0;
         private int _storedNumber = 0;
-        private string _display;
 
         public void PressEquals()
         {
@@ -43,13 +39,6 @@ namespace MobileCalc.ViewModels
         private void UpdateDisplay()
         {
             Display = _currentNumber.ToString();
-        }
-
-        public event PropertyChangedEventHandler PropertyChanged;
-
-        protected virtual void OnPropertyChanged([CallerMemberName] string propertyName = null)
-        {
-            PropertyChanged?.Invoke(this, new PropertyChangedEventArgs(propertyName));
         }
     }
 }

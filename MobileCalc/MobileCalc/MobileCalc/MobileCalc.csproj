@@ -37,6 +37,7 @@
     <Compile Include="Services\ServiceContainer.cs" />
     <Compile Include="Services\StartupService.cs" />
     <Compile Include="ViewModels\CalculatorViewModel.cs" />
+    <Compile Include="ViewModels\ViewModelBase.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="FodyWeavers.xml" />
