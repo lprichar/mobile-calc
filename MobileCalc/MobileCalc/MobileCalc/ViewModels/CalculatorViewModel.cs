@@ -4,10 +4,11 @@
     {
         public string Display { get; private set; }
         private int _currentNumber = 0;
+        private int _storedNumber = 0;
 
         public void PressEquals()
         {
-            _currentNumber = 0;
+            _currentNumber = _storedNumber + _currentNumber;
             UpdateDisplay();
         }
 
@@ -27,6 +28,12 @@
             _currentNumber = _currentNumber * 10;
             _currentNumber = _currentNumber + number;
             UpdateDisplay();
+        }
+
+        public void PressPlus()
+        {
+            _storedNumber = _currentNumber;
+            _currentNumber = 0;
         }
 
         private void UpdateDisplay()

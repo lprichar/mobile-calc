@@ -29,6 +29,7 @@ namespace MobileCalc.Droid
 	    private Button _btn7;
 	    private Button _btn8;
 	    private Button _btn9;
+	    private Button _plus;
 
 	    protected override void OnCreate (Bundle bundle)
 		{
@@ -57,6 +58,7 @@ namespace MobileCalc.Droid
 	        _btn7.Click -= NumberButtonOnClick;
 	        _btn8.Click -= NumberButtonOnClick;
 	        _btn9.Click -= NumberButtonOnClick;
+	        _plus.Click -= PlusOnClick;
 	    }
 
         protected override void OnResume()
@@ -73,9 +75,16 @@ namespace MobileCalc.Droid
 	        _btn7.Click += NumberButtonOnClick;
 	        _btn8.Click += NumberButtonOnClick;
 	        _btn9.Click += NumberButtonOnClick;
+	        _plus.Click += PlusOnClick;
         }
 
-	    private void NumberButtonOnClick(object sender, EventArgs eventArgs)
+	    private void PlusOnClick(object sender, EventArgs eventArgs)
+	    {
+	        _viewModel.PressPlus();
+	        _display.Text = _viewModel.Display;
+	    }
+
+        private void NumberButtonOnClick(object sender, EventArgs eventArgs)
 	    {
 	        var button = (Button)sender;
 	        var buttonText = button.Text;
@@ -85,8 +94,8 @@ namespace MobileCalc.Droid
 
 	    private void EqualsOnClick(object sender, EventArgs eventArgs)
 	    {
-            // todo: do something on equals
-	        //button.Text = string.Format("{0} clicks!", count++);
+            _viewModel.PressEquals();
+	        _display.Text = _viewModel.Display;
 	    }
 
         private void GetViews()
@@ -102,6 +111,7 @@ namespace MobileCalc.Droid
 	        _btn7 = FindViewById<Button>(Resource.Id.btn7);
 	        _btn8 = FindViewById<Button>(Resource.Id.btn8);
 	        _btn9 = FindViewById<Button>(Resource.Id.btn9);
+	        _plus = FindViewById<Button>(Resource.Id.plus);
 	        _display = FindViewById<TextView>(Resource.Id.display);
 	    }
 	}
