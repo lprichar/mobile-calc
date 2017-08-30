@@ -5,17 +5,7 @@ namespace MobileCalc.ViewModels
 {
     public class CalculatorViewModel : INotifyPropertyChanged
     {
-        public string Display
-        {
-            get { return _display; }
-            private set
-            {
-                if (_display == value) return;
-                _display = value;
-                OnPropertyChanged();
-            }
-        }
-
+        public string Display { get; set; }
         private int _currentNumber = 0;
         private int _storedNumber = 0;
         private string _display;
