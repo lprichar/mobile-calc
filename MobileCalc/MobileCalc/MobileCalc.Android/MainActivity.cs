@@ -23,6 +23,12 @@ namespace MobileCalc.Droid
 	    private Button _btn0;
 	    private Button _btn2;
 	    private Button _btn3;
+	    private Button _btn4;
+	    private Button _btn5;
+	    private Button _btn6;
+	    private Button _btn7;
+	    private Button _btn8;
+	    private Button _btn9;
 
 	    protected override void OnCreate (Bundle bundle)
 		{
@@ -45,6 +51,12 @@ namespace MobileCalc.Droid
 	        _btn1.Click -= NumberButtonOnClick;
 	        _btn2.Click -= NumberButtonOnClick;
 	        _btn3.Click -= NumberButtonOnClick;
+	        _btn4.Click -= NumberButtonOnClick;
+	        _btn5.Click -= NumberButtonOnClick;
+	        _btn6.Click -= NumberButtonOnClick;
+	        _btn7.Click -= NumberButtonOnClick;
+	        _btn8.Click -= NumberButtonOnClick;
+	        _btn9.Click -= NumberButtonOnClick;
 	    }
 
         protected override void OnResume()
@@ -55,6 +67,12 @@ namespace MobileCalc.Droid
 	        _btn1.Click += NumberButtonOnClick;
 	        _btn2.Click += NumberButtonOnClick;
 	        _btn3.Click += NumberButtonOnClick;
+	        _btn4.Click += NumberButtonOnClick;
+	        _btn5.Click += NumberButtonOnClick;
+	        _btn6.Click += NumberButtonOnClick;
+	        _btn7.Click += NumberButtonOnClick;
+	        _btn8.Click += NumberButtonOnClick;
+	        _btn9.Click += NumberButtonOnClick;
         }
 
 	    private void NumberButtonOnClick(object sender, EventArgs eventArgs)
@@ -78,6 +96,12 @@ namespace MobileCalc.Droid
 	        _btn1 = FindViewById<Button>(Resource.Id.btn1);
 	        _btn2 = FindViewById<Button>(Resource.Id.btn2);
 	        _btn3 = FindViewById<Button>(Resource.Id.btn3);
+	        _btn4 = FindViewById<Button>(Resource.Id.btn4);
+	        _btn5 = FindViewById<Button>(Resource.Id.btn5);
+	        _btn6 = FindViewById<Button>(Resource.Id.btn6);
+	        _btn7 = FindViewById<Button>(Resource.Id.btn7);
+	        _btn8 = FindViewById<Button>(Resource.Id.btn8);
+	        _btn9 = FindViewById<Button>(Resource.Id.btn9);
 	        _display = FindViewById<TextView>(Resource.Id.display);
 	    }
 	}
