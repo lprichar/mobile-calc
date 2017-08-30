@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.ComponentModel;
 using System.Linq;
 using System.Text;
 using CoreGraphics;
@@ -203,6 +204,7 @@ namespace MobileCalc.iOS.Views
             _button8.TouchUpInside += NumberButtonOnTouchUpInside;
             _button9.TouchUpInside += NumberButtonOnTouchUpInside;
             _buttonPlus.TouchUpInside += ButtonPlusOnTouchUpInside;
+            _viewModel.PropertyChanged += ViewModelOnPropertyChanged;
         }
 
         public override void ViewDidDisappear(bool animated)
@@ -220,12 +222,20 @@ namespace MobileCalc.iOS.Views
             _button8.TouchUpInside -= NumberButtonOnTouchUpInside;
             _button9.TouchUpInside -= NumberButtonOnTouchUpInside;
             _buttonPlus.TouchUpInside -= ButtonPlusOnTouchUpInside;
+            _viewModel.PropertyChanged -= ViewModelOnPropertyChanged;
+        }
+
+        private void ViewModelOnPropertyChanged(object sender, PropertyChangedEventArgs propertyChangedEventArgs)
+        {
+            if (propertyChangedEventArgs.PropertyName == nameof(_viewModel.Display))
+            {
+                _displayLabel.Text = _viewModel.Display;
+            }
         }
 
         private void ButtonPlusOnTouchUpInside(object sender, EventArgs eventArgs)
         {
             _viewModel.PressPlus();
-            _displayLabel.Text = _viewModel.Display;
         }
 
         private void NumberButtonOnTouchUpInside(object sender, EventArgs eventArgs)
@@ -233,13 +243,11 @@ namespace MobileCalc.iOS.Views
             var uiButton = (UIButton)sender;
             var number = uiButton.Title(UIControlState.Normal);
             _viewModel.PressNumber(number);
-            _displayLabel.Text = _viewModel.Display;
         }
 
         private void EqualsButtonOnTouchUpInside(object sender, EventArgs eventArgs)
         {
             _viewModel.PressEquals();
-            _displayLabel.Text = _viewModel.Display;
         }
 
         private static UILabel AddLabel(UIView parent, string text)
