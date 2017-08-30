@@ -101,5 +101,31 @@ namespace MobileCalc.Test.ViewModels
             calculatorViewModel.PressNumber(1);
             Assert.AreEqual("1", calculatorViewModel.Display);
         }
+
+        [Test]
+        public void GivenTwoPlusTwoPlusOnePlusOnePlus_WhenPressOne_ThenDisplayOne()
+        {
+            var calculatorViewModel = new CalculatorViewModel();
+            calculatorViewModel.PressNumber(1);
+            calculatorViewModel.PressPlus();
+            calculatorViewModel.PressNumber(1);
+            calculatorViewModel.PressPlus();
+            calculatorViewModel.PressNumber(1);
+            Assert.AreEqual("1", calculatorViewModel.Display);
+        }
+
+        [Test]
+        public void GivenOnePlusOnePlusOnePlus_WhenPressPlus_ThenDisplayThree()
+        {
+            var calculatorViewModel = new CalculatorViewModel();
+            calculatorViewModel.PressNumber(1);
+            calculatorViewModel.PressPlus();
+            calculatorViewModel.PressNumber(1);
+            calculatorViewModel.PressPlus();
+            calculatorViewModel.PressNumber(1);
+            calculatorViewModel.PressPlus();
+            Assert.AreEqual("3", calculatorViewModel.Display);
+        }
+
     }
 }

@@ -40,6 +40,7 @@
             else
             {
                 PressEquals();
+                _storedNumber = _currentNumber;
                 _currentNumber = 0;
             }
         }
