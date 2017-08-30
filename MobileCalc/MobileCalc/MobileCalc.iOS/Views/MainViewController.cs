@@ -16,7 +16,7 @@ namespace MobileCalc.iOS.Views
         private readonly CalculatorViewModel _viewModel = ServiceContainer.Resolve<CalculatorViewModel>();
 
         private UIButton _plusMinusButton;
-        private UILabel _mainLabel;
+        private UILabel _displayLabel;
         private UIButton _zeroButton;
         private UIButton _dotButton;
         private UIButton _equalsButton;
@@ -49,10 +49,10 @@ namespace MobileCalc.iOS.Views
         private void AddConstraints()
         {
             View.ConstrainLayout(() => 
-                _mainLabel.Frame.Top == View.Frame.Top + 40
-                && _mainLabel.Frame.Left == View.Frame.Left + 50
-                && _mainLabel.Frame.Right == View.Frame.Right - 15
-                && _mainLabel.Frame.Height == View.Frame.Height * .167f - 44
+                _displayLabel.Frame.Top == View.Frame.Top + 40
+                && _displayLabel.Frame.Left == View.Frame.Left + 50
+                && _displayLabel.Frame.Right == View.Frame.Right - 15
+                && _displayLabel.Frame.Height == View.Frame.Height * .167f - 44
 
                 && _plusMinusButton.Frame.Bottom == View.Frame.Bottom
                 && _plusMinusButton.Frame.Left == View.Frame.Left
@@ -160,7 +160,7 @@ namespace MobileCalc.iOS.Views
 
         private void AddViews()
         {
-            _mainLabel = AddLabel(View, "0");
+            _displayLabel = AddLabel(View, "0");
 
             _plusMinusButton = AddButton(View, "+=");
             _zeroButton = AddButton(View, "0");
@@ -202,14 +202,7 @@ namespace MobileCalc.iOS.Views
             _button7.TouchUpInside += NumberButtonOnTouchUpInside;
             _button8.TouchUpInside += NumberButtonOnTouchUpInside;
             _button9.TouchUpInside += NumberButtonOnTouchUpInside;
-        }
-
-        private void NumberButtonOnTouchUpInside(object sender, EventArgs eventArgs)
-        {
-            var uiButton = (UIButton)sender;
-            var number = uiButton.Title(UIControlState.Normal);
-            _viewModel.PressNumber(number);
-            _mainLabel.Text = _viewModel.Display;
+            _buttonPlus.TouchUpInside += ButtonPlusOnTouchUpInside;
         }
 
         public override void ViewDidDisappear(bool animated)
@@ -226,14 +219,27 @@ namespace MobileCalc.iOS.Views
             _button7.TouchUpInside -= NumberButtonOnTouchUpInside;
             _button8.TouchUpInside -= NumberButtonOnTouchUpInside;
             _button9.TouchUpInside -= NumberButtonOnTouchUpInside;
+            _buttonPlus.TouchUpInside -= ButtonPlusOnTouchUpInside;
         }
 
-        private int counter = 0;
+        private void ButtonPlusOnTouchUpInside(object sender, EventArgs eventArgs)
+        {
+            _viewModel.PressPlus();
+            _displayLabel.Text = _viewModel.Display;
+        }
+
+        private void NumberButtonOnTouchUpInside(object sender, EventArgs eventArgs)
+        {
+            var uiButton = (UIButton)sender;
+            var number = uiButton.Title(UIControlState.Normal);
+            _viewModel.PressNumber(number);
+            _displayLabel.Text = _viewModel.Display;
+        }
 
         private void EqualsButtonOnTouchUpInside(object sender, EventArgs eventArgs)
         {
-            counter++;
-            _mainLabel.Text = counter.ToString();
+            _viewModel.PressEquals();
+            _displayLabel.Text = _viewModel.Display;
         }
 
         private static UILabel AddLabel(UIView parent, string text)
