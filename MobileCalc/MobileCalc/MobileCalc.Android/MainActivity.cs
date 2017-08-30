@@ -1,5 +1,5 @@
 ﻿using System;
-
+using System.ComponentModel;
 using Android.App;
 using Android.Content;
 using Android.Runtime;
@@ -59,6 +59,7 @@ namespace MobileCalc.Droid
 	        _btn8.Click -= NumberButtonOnClick;
 	        _btn9.Click -= NumberButtonOnClick;
 	        _plus.Click -= PlusOnClick;
+	        _viewModel.PropertyChanged -= ViewModelOnPropertyChanged;
 	    }
 
         protected override void OnResume()
@@ -76,12 +77,20 @@ namespace MobileCalc.Droid
 	        _btn8.Click += NumberButtonOnClick;
 	        _btn9.Click += NumberButtonOnClick;
 	        _plus.Click += PlusOnClick;
+            _viewModel.PropertyChanged += ViewModelOnPropertyChanged;
+        }
+
+	    private void ViewModelOnPropertyChanged(object sender, PropertyChangedEventArgs propertyChangedEventArgs)
+	    {
+	        if (propertyChangedEventArgs.PropertyName == nameof(_viewModel.Display))
+	        {
+	            _display.Text = _viewModel.Display;
+	        }
         }
 
 	    private void PlusOnClick(object sender, EventArgs eventArgs)
 	    {
 	        _viewModel.PressPlus();
-	        _display.Text = _viewModel.Display;
 	    }
 
         private void NumberButtonOnClick(object sender, EventArgs eventArgs)
@@ -89,13 +98,11 @@ namespace MobileCalc.Droid
 	        var button = (Button)sender;
 	        var buttonText = button.Text;
 	        _viewModel.PressNumber(buttonText);
-	        _display.Text = _viewModel.Display;
 	    }
 
 	    private void EqualsOnClick(object sender, EventArgs eventArgs)
 	    {
             _viewModel.PressEquals();
-	        _display.Text = _viewModel.Display;
 	    }
 
         private void GetViews()
