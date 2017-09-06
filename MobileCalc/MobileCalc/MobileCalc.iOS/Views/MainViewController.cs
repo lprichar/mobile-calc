@@ -186,7 +186,9 @@ namespace MobileCalc.iOS.Views
             _buttonCe = AddButton(View, "CE");
             _buttonC = AddButton(View, "C");
             _buttonBackspace = AddButton(View, "<-");
-            _buttonDivide = AddButton(View, "%");
+            _buttonDivide = AddButton(View, "");
+            var divideImage = UIImage.FromBundle("Divide");
+            _buttonDivide.SetImage(divideImage, UIControlState.Normal);
         }
 
         public override void ViewDidAppear(bool animated)
