@@ -193,7 +193,8 @@ namespace MobileCalc.iOS.Views
         {
             var divideButton = AddButton(parent, "");
             var divideImage = UIImage.FromBundle("Divide");
-            divideButton.SetImage(divideImage, UIControlState.Normal);
+            var tintableImage = divideImage.ImageWithRenderingMode(UIImageRenderingMode.AlwaysTemplate);
+            divideButton.SetImage(tintableImage, UIControlState.Normal);
             return divideButton;
         }
 
@@ -213,6 +214,8 @@ namespace MobileCalc.iOS.Views
             _button9.TouchUpInside += NumberButtonOnTouchUpInside;
             _buttonPlus.TouchUpInside += ButtonPlusOnTouchUpInside;
             _viewModel.PropertyChanged += ViewModelOnPropertyChanged;
+            _buttonDivide.TouchDown += ButtonDivideOnTouchDown;
+            _buttonDivide.TouchUpInside += ButtonDivideOnTouchUpInside;
         }
 
         public override void ViewDidDisappear(bool animated)
@@ -231,6 +234,18 @@ namespace MobileCalc.iOS.Views
             _button9.TouchUpInside -= NumberButtonOnTouchUpInside;
             _buttonPlus.TouchUpInside -= ButtonPlusOnTouchUpInside;
             _viewModel.PropertyChanged -= ViewModelOnPropertyChanged;
+            _buttonDivide.TouchDown -= ButtonDivideOnTouchDown;
+            _buttonDivide.TouchUpInside -= ButtonDivideOnTouchUpInside;
+        }
+
+        private void ButtonDivideOnTouchUpInside(object sender, EventArgs eventArgs)
+        {
+            _buttonDivide.TintColor = UIColor.Black;
+        }
+
+        private void ButtonDivideOnTouchDown(object sender, EventArgs eventArgs)
+        {
+            _buttonDivide.TintColor = UIColor.White;
         }
 
         private void ViewModelOnPropertyChanged(object sender, PropertyChangedEventArgs propertyChangedEventArgs)
