@@ -1,10 +1,5 @@
 ﻿using System;
-using System.Collections.Generic;
 using System.ComponentModel;
-using System.Linq;
-using System.Text;
-using CoreGraphics;
-using Foundation;
 using MobileCalc.Services;
 using MobileCalc.ViewModels;
 using Praeclarum.UI;
@@ -187,6 +182,8 @@ namespace MobileCalc.iOS.Views
             _buttonC = AddButton(View, "C");
             _buttonBackspace = AddButton(View, "<-");
             _buttonDivide = AddDivideButton(View);
+
+            SetButtonTint(_buttonDivide, isPressed: false);
         }
 
         private static UIButton AddDivideButton(UIView parent)
@@ -240,12 +237,18 @@ namespace MobileCalc.iOS.Views
 
         private void ButtonDivideOnTouchUpInside(object sender, EventArgs eventArgs)
         {
-            _buttonDivide.TintColor = UIColor.Black;
+            SetButtonTint(_buttonDivide, false);
         }
 
         private void ButtonDivideOnTouchDown(object sender, EventArgs eventArgs)
         {
-            _buttonDivide.TintColor = UIColor.White;
+            SetButtonTint(_buttonDivide, true);
+        }
+
+        private static void SetButtonTint(UIButton button, bool isPressed)
+        {
+            var color = isPressed ? UIColor.White : UIColor.Black;
+            button.TintColor = color;
         }
 
         private void ViewModelOnPropertyChanged(object sender, PropertyChangedEventArgs propertyChangedEventArgs)
