@@ -12,7 +12,7 @@ using MobileCalc.ViewModels;
 
 namespace MobileCalc.Droid
 {
-	[Activity (Label = "MobileCalc.Android", MainLauncher = true, Icon = "@drawable/icon")]
+	[Activity (Label = "MobileCalc.Android", MainLauncher = false, Icon = "@drawable/icon")]
 	public class MainActivity : AppCompatActivity
 	{
 		int count = 1;
