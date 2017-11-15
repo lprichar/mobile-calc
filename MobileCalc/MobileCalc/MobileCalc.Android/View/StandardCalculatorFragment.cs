@@ -1,13 +1,13 @@
 ﻿using System;
 using System.ComponentModel;
 using Android.App;
+using Android.OS;
 using Android.Views;
 using Android.Widget;
-using Android.OS;
 using MobileCalc.Services;
 using MobileCalc.ViewModels;
 
-namespace MobileCalc.Droid
+namespace MobileCalc.Droid.View
 {
 	public class StandardCalculatorFragment : Fragment
 	{
