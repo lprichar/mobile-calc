@@ -1,13 +1,7 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-
-using Android.App;
+﻿using Android.App;
 using Android.Content;
 using Android.Content.Res;
 using Android.OS;
-using Android.Runtime;
 using Android.Support.V4.View;
 using Android.Support.V4.Widget;
 using Android.Support.V7.App;
@@ -38,7 +32,7 @@ namespace MobileCalc.Droid.View
         {
             base.OnCreate(savedInstanceState);
             SetContentView(Resource.Layout.activity_navigation_drawer);
-            mDrawerTitle = this.Title;
+            mDrawerTitle = Title;
             mDrawerLayout = FindViewById<DrawerLayout>(Resource.Id.drawer_layout);
             mDrawerList = FindViewById<RecyclerView>(Resource.Id.left_drawer);
 
@@ -72,7 +66,7 @@ namespace MobileCalc.Droid.View
 
         internal class MyActionBarDrawerToggle : ActionBarDrawerToggle
         {
-            MainDrawerActivity owner;
+            readonly MainDrawerActivity owner;
 
             public MyActionBarDrawerToggle(MainDrawerActivity activity, DrawerLayout layout, int openRes, int closeRes)
                 : base(activity, layout, openRes, closeRes)
@@ -149,9 +143,11 @@ namespace MobileCalc.Droid.View
 
         private void SelectItem(int position)
         {
-            var fragment = new StandardCalculatorFragment();
+            // todo: don't use the position, instead pass in the fragment to instantiate on click
 
-            var fragmentManager = this.FragmentManager;
+            var fragment = GetFragment(position);
+
+            var fragmentManager = SupportFragmentManager;
             var transaction = fragmentManager.BeginTransaction();
             transaction.Replace(Resource.Id.content_frame, fragment);
             transaction.Commit();
@@ -159,6 +155,14 @@ namespace MobileCalc.Droid.View
             // update selected item title, then close the drawer
             Title = "Hello World";
             mDrawerLayout.CloseDrawer(mDrawerList);
+        }
+
+        private static Android.Support.V4.App.Fragment GetFragment(int position)
+        {
+            if (position == 0)
+                return new StandardCalculatorFragment();
+            else
+                return new CurrencyCalculatorView();
         }
 
         protected override void OnTitleChanged(Java.Lang.ICharSequence title, Android.Graphics.Color color)
