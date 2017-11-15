@@ -1,19 +1,15 @@
 ﻿using System;
 using System.ComponentModel;
 using Android.App;
-using Android.Content;
-using Android.Runtime;
 using Android.Views;
 using Android.Widget;
 using Android.OS;
-using Android.Support.V7.App;
 using MobileCalc.Services;
 using MobileCalc.ViewModels;
 
 namespace MobileCalc.Droid
 {
-	[Activity (Label = "MobileCalc.Android", MainLauncher = false, Icon = "@drawable/icon")]
-	public class MainActivity : AppCompatActivity
+	public class StandardCalculatorFragment : Fragment
 	{
 		int count = 1;
 	    private Button _equals;
@@ -31,20 +27,21 @@ namespace MobileCalc.Droid
 	    private Button _btn9;
 	    private Button _plus;
 
-	    protected override void OnCreate (Bundle bundle)
-		{
-			base.OnCreate (bundle);
-
+	    public override Android.Views.View OnCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState)
+	    {
             // todo: implement a splash screen and call Startup() from there
-            StartupService.Startup();
+	        StartupService.Startup();
 
-		    _viewModel = ServiceContainer.Resolve<CalculatorViewModel>();
+            _viewModel = ServiceContainer.Resolve<CalculatorViewModel>();
 
-            SetContentView(Resource.Layout.Main);
-			GetViews();
-		}
+	        var mainView = inflater.Inflate(Resource.Layout.Main, container, false);
+	        GetViews(mainView);
 
-	    protected override void OnPause()
+	        return mainView;
+
+	    }
+
+	    public override void OnPause()
 	    {
 	        base.OnPause();
 	        _equals.Click -= EqualsOnClick;
@@ -62,7 +59,7 @@ namespace MobileCalc.Droid
 	        _viewModel.PropertyChanged -= ViewModelOnPropertyChanged;
 	    }
 
-        protected override void OnResume()
+        public override void OnResume()
 	    {
 	        base.OnResume();
             _equals.Click += EqualsOnClick;
@@ -105,21 +102,21 @@ namespace MobileCalc.Droid
             _viewModel.PressEquals();
 	    }
 
-        private void GetViews()
+        private void GetViews(Android.Views.View rootElement)
 	    {
-	        _equals = FindViewById<Button>(Resource.Id.equals);
-	        _btn0 = FindViewById<Button>(Resource.Id.zero);
-	        _btn1 = FindViewById<Button>(Resource.Id.btn1);
-	        _btn2 = FindViewById<Button>(Resource.Id.btn2);
-	        _btn3 = FindViewById<Button>(Resource.Id.btn3);
-	        _btn4 = FindViewById<Button>(Resource.Id.btn4);
-	        _btn5 = FindViewById<Button>(Resource.Id.btn5);
-	        _btn6 = FindViewById<Button>(Resource.Id.btn6);
-	        _btn7 = FindViewById<Button>(Resource.Id.btn7);
-	        _btn8 = FindViewById<Button>(Resource.Id.btn8);
-	        _btn9 = FindViewById<Button>(Resource.Id.btn9);
-	        _plus = FindViewById<Button>(Resource.Id.plus);
-	        _display = FindViewById<TextView>(Resource.Id.display);
+	        _equals = rootElement.FindViewById<Button>(Resource.Id.equals);
+	        _btn0 = rootElement.FindViewById<Button>(Resource.Id.zero);
+	        _btn1 = rootElement.FindViewById<Button>(Resource.Id.btn1);
+	        _btn2 = rootElement.FindViewById<Button>(Resource.Id.btn2);
+	        _btn3 = rootElement.FindViewById<Button>(Resource.Id.btn3);
+	        _btn4 = rootElement.FindViewById<Button>(Resource.Id.btn4);
+	        _btn5 = rootElement.FindViewById<Button>(Resource.Id.btn5);
+	        _btn6 = rootElement.FindViewById<Button>(Resource.Id.btn6);
+	        _btn7 = rootElement.FindViewById<Button>(Resource.Id.btn7);
+	        _btn8 = rootElement.FindViewById<Button>(Resource.Id.btn8);
+	        _btn9 = rootElement.FindViewById<Button>(Resource.Id.btn9);
+	        _plus = rootElement.FindViewById<Button>(Resource.Id.plus);
+	        _display = rootElement.FindViewById<TextView>(Resource.Id.display);
 	    }
 	}
 }

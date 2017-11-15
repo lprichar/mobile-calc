@@ -30,6 +30,7 @@ namespace MobileCalc.Droid.View
 
         public MainDrawerActivity()
         {
+            // todo: convert to service locator
             _viewModel = new MainDrawerViewModel();
         }
 
@@ -65,7 +66,7 @@ namespace MobileCalc.Droid.View
 
             mDrawerLayout.SetDrawerListener(mDrawerToggle);
             if (savedInstanceState == null) //first launch
-                selectItem(0);
+                SelectItem(0);
 
         }
 
@@ -143,29 +144,22 @@ namespace MobileCalc.Droid.View
         /* The click listener for RecyclerView in the navigation drawer */
         public void OnClick(Android.Views.View view, int position)
         {
-            selectItem(position);
+            SelectItem(position);
         }
 
-        private void selectItem(int position)
+        private void SelectItem(int position)
         {
-            // update the main content by replacing fragments
-            var fragment = PlanetFragment.NewInstance(position);
+            var fragment = new StandardCalculatorFragment();
 
             var fragmentManager = this.FragmentManager;
-            var ft = fragmentManager.BeginTransaction();
-            ft.Replace(Resource.Id.content_frame, fragment);
-            ft.Commit();
+            var transaction = fragmentManager.BeginTransaction();
+            transaction.Replace(Resource.Id.content_frame, fragment);
+            transaction.Commit();
 
             // update selected item title, then close the drawer
             Title = "Hello World";
             mDrawerLayout.CloseDrawer(mDrawerList);
         }
-
-        //		private void SetTitle (string title)
-        //		{
-        //			this.Title = title;
-        //			this.ActionBar.Title = title;
-        //		}
 
         protected override void OnTitleChanged(Java.Lang.ICharSequence title, Android.Graphics.Color color)
         {
@@ -191,47 +185,6 @@ namespace MobileCalc.Droid.View
             // Pass any configuration change to the drawer toggls
             mDrawerToggle.OnConfigurationChanged(newConfig);
         }
-
-        /**
-	     * Fragment that appears in the "content_frame", shows a planet
-	     */
-        internal class PlanetFragment : Fragment
-        {
-            public const string ARG_PLANET_NUMBER = "planet_number";
-
-            public PlanetFragment()
-            {
-                // Empty constructor required for fragment subclasses
-            }
-
-            public static Fragment NewInstance(int position)
-            {
-                Fragment fragment = new PlanetFragment();
-                Bundle args = new Bundle();
-                args.PutInt(PlanetFragment.ARG_PLANET_NUMBER, position);
-                fragment.Arguments = args;
-                return fragment;
-            }
-
-            public override Android.Views.View OnCreateView(LayoutInflater inflater, ViewGroup container,
-                                               Bundle savedInstanceState)
-            {
-                var view = new Android.Views.View(Context);
-                return view;
-
-                //Android.Views.View rootView = inflater.Inflate(Resource.Layout.fragment_page, container, false);
-                //var i = this.Arguments.GetInt(ARG_PLANET_NUMBER);
-                //var planet = this.Resources.GetStringArray(Resource.Array.planets_array)[i];
-                //var imgId = this.Resources.GetIdentifier(planet.ToLower(),
-                //                "drawable", this.Activity.PackageName);
-                //var iv = rootView.FindViewById<ImageView>(Resource.Id.image);
-                //iv.SetImageResource(imgId);
-                //this.Activity.Title = planet;
-                //return rootView;
-            }
-        }
-
-
     }
 }
 
