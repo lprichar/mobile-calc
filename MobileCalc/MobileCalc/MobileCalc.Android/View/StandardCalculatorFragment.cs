@@ -34,7 +34,7 @@ namespace MobileCalc.Droid.View
 
             _viewModel = ServiceContainer.Resolve<CalculatorViewModel>();
 
-	        var mainView = inflater.Inflate(Resource.Layout.Main, container, false);
+	        var mainView = inflater.Inflate(Resource.Layout.standard_calculator_fragment, container, false);
 	        GetViews(mainView);
 
 	        return mainView;
