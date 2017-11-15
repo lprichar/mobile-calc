@@ -1,4 +1,4 @@
-﻿using System;
+﻿using System.Collections.Generic;
 using Android.Support.V7.Widget;
 using Android.Views;
 using Android.Widget;
@@ -7,7 +7,7 @@ namespace MobileCalc.Droid.View
 {
     public class PageAdapter : RecyclerView.Adapter
     {
-        private readonly String[] _dataset;
+        private readonly List<string> _pages;
         private readonly IOnItemClickListener _listener;
         //Associated Objects
         public interface IOnItemClickListener
@@ -15,18 +15,18 @@ namespace MobileCalc.Droid.View
             void OnClick(Android.Views.View view, int position);
         }
 
-        public class ViewHolder : RecyclerView.ViewHolder
+        private class ViewHolder : RecyclerView.ViewHolder
         {
-            public readonly TextView textView;
-            public ViewHolder(TextView v) : base(v)
+            public readonly TextView TextView;
+            public ViewHolder(TextView textView) : base(textView)
             {
-                textView = v;
+                TextView = textView;
             }
         }
 
-        public PageAdapter(string[] myDataSet, IOnItemClickListener listener)
+        public PageAdapter(List<string> pages, IOnItemClickListener listener)
         {
-            _dataset = myDataSet;
+            _pages = pages;
             _listener = listener;
         }
 
@@ -41,9 +41,9 @@ namespace MobileCalc.Droid.View
         public override void OnBindViewHolder(RecyclerView.ViewHolder holderRaw, int position)
         {
             var holder = (ViewHolder)holderRaw;
-            holder.textView.Text = _dataset[position];
+            holder.TextView.Text = _pages[position];
             // todo: remove Xamarin's crappy memory leak right here!!!
-            holder.textView.Click += (object sender, EventArgs args) => {
+            holder.TextView.Click += (sender, args) => {
                 _listener.OnClick((Android.Views.View)sender, position);
             };
 
@@ -56,7 +56,7 @@ namespace MobileCalc.Droid.View
         {
             get
             {
-                return _dataset.Length;
+                return _pages.Count;
             }
         }
     }

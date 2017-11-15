@@ -14,6 +14,7 @@ using Android.Support.V7.App;
 using Android.Support.V7.Widget;
 using Android.Views;
 using Android.Widget;
+using MobileCalc.ViewModels;
 
 namespace MobileCalc.Droid.View
 {
@@ -23,8 +24,14 @@ namespace MobileCalc.Droid.View
         private DrawerLayout mDrawerLayout;
         private RecyclerView mDrawerList;
         private ActionBarDrawerToggle mDrawerToggle;
+        private MainDrawerViewModel _viewModel;
 
         private string mDrawerTitle;
+
+        public MainDrawerActivity()
+        {
+            _viewModel = new MainDrawerViewModel();
+        }
 
         protected override void OnCreate(Bundle savedInstanceState)
         {
@@ -41,10 +48,8 @@ namespace MobileCalc.Droid.View
             mDrawerList.SetLayoutManager(new LinearLayoutManager(this));
 
             // set up the drawer's list view with items and click listener
-            // todo: move this into the ViewModel
-            var pageNames = new[] {"Standard", "Scientific", "Programmer", "Date Calculation"};
 
-            mDrawerList.SetAdapter(new PageAdapter(pageNames, this));
+            mDrawerList.SetAdapter(new PageAdapter(_viewModel.PageNames, this));
             // enable ActionBar app icon to behave as action to toggle nav drawer
             SupportActionBar.SetDisplayHomeAsUpEnabled(true);
             SupportActionBar.SetHomeButtonEnabled(true);
