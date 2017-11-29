@@ -44,10 +44,6 @@ namespace MobileCalc.iOS.Views
                 _pages = pages;
             }
 
-            public override nint NumberOfSections(UITableView tableView)
-                return 1;
-            }
-
             public override nint RowsInSection(UITableView tableview, nint section)
             {
                 return _pages.Count;
