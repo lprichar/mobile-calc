@@ -25,7 +25,7 @@ namespace MobileCalc.iOS
 		    StartupService.Startup();
 
             // If you have defined a root view controller, set it here:
-            Window.RootViewController = new MainViewController();
+            Window.RootViewController = new RootViewController();
 
 		    // make the window visible
 		    Window.MakeKeyAndVisible();

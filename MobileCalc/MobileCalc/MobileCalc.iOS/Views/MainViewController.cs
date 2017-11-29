@@ -213,6 +213,7 @@ namespace MobileCalc.iOS.Views
             _viewModel.PropertyChanged += ViewModelOnPropertyChanged;
             _buttonDivide.TouchDown += ButtonDivideOnTouchDown;
             _buttonDivide.TouchUpInside += ButtonDivideOnTouchUpInside;
+            _buttonCe.TouchUpInside += ButtonCeOnTouchUpInside;
         }
 
         public override void ViewDidDisappear(bool animated)
@@ -233,6 +234,14 @@ namespace MobileCalc.iOS.Views
             _viewModel.PropertyChanged -= ViewModelOnPropertyChanged;
             _buttonDivide.TouchDown -= ButtonDivideOnTouchDown;
             _buttonDivide.TouchUpInside -= ButtonDivideOnTouchUpInside;
+            _buttonCe.TouchUpInside -= ButtonCeOnTouchUpInside;
+        }
+
+        private void ButtonCeOnTouchUpInside(object sender, EventArgs eventArgs)
+        {
+            var appDelegate = (AppDelegate)UIApplication.SharedApplication.Delegate;
+            var rootViewController = (RootViewController)appDelegate.Window.RootViewController;
+            rootViewController.ToggleMenu();
         }
 
         private void ButtonDivideOnTouchUpInside(object sender, EventArgs eventArgs)
