@@ -2,6 +2,7 @@
 using MobileCalc.iOS.Views;
 using MobileCalc.Services;
 using UIKit;
+using Xamarin.Forms;
 
 namespace MobileCalc.iOS
 {
@@ -23,6 +24,8 @@ namespace MobileCalc.iOS
 		    Window = new UIWindow(UIScreen.MainScreen.Bounds);
 
 		    StartupService.Startup();
+
+            Forms.Init();
 
             // If you have defined a root view controller, set it here:
             Window.RootViewController = new RootViewController();

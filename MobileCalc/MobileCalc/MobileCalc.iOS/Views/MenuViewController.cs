@@ -2,7 +2,9 @@
 using System.Collections.Generic;
 using Foundation;
 using MobileCalc.ViewModels;
+using MobileCalc.Views;
 using UIKit;
+using Xamarin.Forms.Platform.iOS;
 
 namespace MobileCalc.iOS.Views
 {
@@ -32,7 +34,8 @@ namespace MobileCalc.iOS.Views
             {
                 return new StandardCalculatorViewController();
             }
-            return new CurrencyCalculatorViewController();
+            var currencyView = new CurrencyView().CreateViewController();
+            return currencyView;
         }
 
         public class PagesTableSource : UITableViewDataSource
