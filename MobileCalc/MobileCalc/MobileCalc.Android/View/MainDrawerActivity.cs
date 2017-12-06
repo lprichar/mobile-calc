@@ -9,6 +9,9 @@ using Android.Support.V7.Widget;
 using Android.Views;
 using Android.Widget;
 using MobileCalc.ViewModels;
+using MobileCalc.Views;
+using Xamarin.Forms;
+using Xamarin.Forms.Platform.Android;
 
 namespace MobileCalc.Droid.View
 {
@@ -31,6 +34,9 @@ namespace MobileCalc.Droid.View
         protected override void OnCreate(Bundle savedInstanceState)
         {
             base.OnCreate(savedInstanceState);
+
+            Forms.Init(this, savedInstanceState);
+
             SetContentView(Resource.Layout.activity_navigation_drawer);
             mDrawerTitle = Title;
             mDrawerLayout = FindViewById<DrawerLayout>(Resource.Id.drawer_layout);
@@ -44,7 +50,8 @@ namespace MobileCalc.Droid.View
 
             // set up the drawer's list view with items and click listener
 
-            mDrawerList.SetAdapter(new PageAdapter(_viewModel.PageNames, this));
+            var pageAdapter = new PageAdapter(_viewModel.PageNames, this);
+            mDrawerList.SetAdapter(pageAdapter);
             // enable ActionBar app icon to behave as action to toggle nav drawer
             SupportActionBar.SetDisplayHomeAsUpEnabled(true);
             SupportActionBar.SetHomeButtonEnabled(true);
@@ -145,7 +152,7 @@ namespace MobileCalc.Droid.View
         {
             // todo: don't use the position, instead pass in the fragment to instantiate on click
 
-            var fragment = GetFragment(position);
+            var fragment = GetFragment(position, this);
 
             var fragmentManager = SupportFragmentManager;
             var transaction = fragmentManager.BeginTransaction();
@@ -157,12 +164,12 @@ namespace MobileCalc.Droid.View
             mDrawerLayout.CloseDrawer(mDrawerList);
         }
 
-        private static Android.Support.V4.App.Fragment GetFragment(int position)
+        private static Android.Support.V4.App.Fragment GetFragment(int position, Context context)
         {
             if (position == 0)
                 return new StandardCalculatorFragment();
-            else
-                return new CurrencyCalculatorView();
+
+            return new CurrencyView().CreateSupportFragment(context);
         }
 
         protected override void OnTitleChanged(Java.Lang.ICharSequence title, Android.Graphics.Color color)
