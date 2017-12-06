@@ -28,7 +28,7 @@ namespace MobileCalc.iOS.Views
         {
             base.ViewDidLoad();
 
-            _sidebarController = new SidebarController(this, new StandardCalculatorViewController(), new MenuViewController())
+            _sidebarController = new SidebarController(this, new StandardCalculatorNavigationViewController(), new MenuViewController())
             {
                 MenuLocation = MenuLocations.Left
             };

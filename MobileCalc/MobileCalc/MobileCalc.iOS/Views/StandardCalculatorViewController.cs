@@ -7,6 +7,19 @@ using UIKit;
 
 namespace MobileCalc.iOS.Views
 {
+    public class StandardCalculatorNavigationViewController : UINavigationController
+    {
+        public override void ViewDidLoad()
+        {
+            base.ViewDidLoad();
+
+            NavigationBarHidden = false;
+
+            var standardCalculatorViewController = new StandardCalculatorViewController();
+            PushViewController(standardCalculatorViewController, true);
+        }
+    }
+
     public class StandardCalculatorViewController : UIViewController
     {
         private readonly CalculatorViewModel _viewModel = ServiceContainer.Resolve<CalculatorViewModel>();
@@ -37,9 +50,21 @@ namespace MobileCalc.iOS.Views
         {
             base.ViewDidLoad();
 
+            Title = "Standard";
+
+            var uiBarButtonItem = new UIBarButtonItem(UIBarButtonSystemItem.Action, OnMenuClick);
+            NavigationItem.RightBarButtonItem = uiBarButtonItem;
+
+            EdgesForExtendedLayout = UIRectEdge.None;
+
             View.BackgroundColor = UIColor.FromRGBA(236, 236, 236, 255);
             AddViews();
             AddConstraints();
+        }
+
+        private void OnMenuClick(object sender, EventArgs e)
+        {
+            RootViewController.GetInstance().ToggleMenu();
         }
 
         private void AddConstraints()
@@ -239,7 +264,6 @@ namespace MobileCalc.iOS.Views
 
         private void ButtonCeOnTouchUpInside(object sender, EventArgs eventArgs)
         {
-            RootViewController.GetInstance().ToggleMenu();
         }
 
         private void ButtonDivideOnTouchUpInside(object sender, EventArgs eventArgs)

@@ -32,7 +32,7 @@ namespace MobileCalc.iOS.Views
         {
             if (indexPath.Row == 0)
             {
-                return new StandardCalculatorViewController();
+                return new StandardCalculatorNavigationViewController();
             }
             var currencyView = new CurrencyView().CreateViewController();
             return currencyView;
