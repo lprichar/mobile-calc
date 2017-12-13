@@ -12,6 +12,7 @@ namespace MobileCalc.Services
         public static void Startup()
         {
             ServiceContainer.Register(() => new CalculatorViewModel());
+            ServiceContainer.Register(() => new CurrencyViewModel());
         }
     }
 }

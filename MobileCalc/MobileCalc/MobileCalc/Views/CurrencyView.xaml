@@ -17,18 +17,18 @@
     <ContentPage.Content>
         <StackLayout Margin="15">
             <StackLayout Orientation="Horizontal">
-                <Label Text="$" 
+                <Label Text="{Binding Symbol1}" 
                        Style="{StaticResource CurrencySign}"
                         />
-                <Label Text="0" 
+                <Label Text="{Binding Display1}" 
                        Style="{StaticResource CurrencyValue}"
                        />
             </StackLayout>
             <StackLayout Orientation="Horizontal">
-                <Label Text="€" 
+                <Label Text="{Binding Symbol2}" 
                        Style="{StaticResource CurrencySign}"
                        />
-                <Label Text="0" 
+                <Label Text="{Binding Display2}" 
                        Style="{StaticResource CurrencyValue}"
                        />
             </StackLayout>
