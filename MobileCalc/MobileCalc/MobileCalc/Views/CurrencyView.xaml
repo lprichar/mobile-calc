@@ -5,8 +5,41 @@
     <ContentPage.Content>
         <StackLayout>
             <Label Text="Welcome to Xamarin.Forms!"
-                VerticalOptions="CenterAndExpand" 
+                VerticalOptions="StartAndExpand" 
                 HorizontalOptions="CenterAndExpand" />
+            
+            <Grid>
+                <Grid.RowDefinitions>
+                    <RowDefinition Height="*" />
+                    <RowDefinition Height="*" />
+                    <RowDefinition Height="*" />
+                    <RowDefinition Height="*" />
+                    <RowDefinition Height="*" />
+                </Grid.RowDefinitions>
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition Width="*" />
+                    <ColumnDefinition Width="*" />
+                    <ColumnDefinition Width="*" />
+                </Grid.ColumnDefinitions>
+
+                <Button Grid.Row="0" Grid.Column="1" Text="CE" HorizontalOptions="FillAndExpand" />
+                <Button Grid.Row="0" Grid.Column="2" Text="&lt;-" HorizontalOptions="FillAndExpand" />
+
+                <Button Grid.Row="1" Grid.Column="0" Text="7" HorizontalOptions="FillAndExpand" />
+                <Button Grid.Row="1" Grid.Column="1" Text="8" HorizontalOptions="FillAndExpand" />
+                <Button Grid.Row="1" Grid.Column="2" Text="9" HorizontalOptions="FillAndExpand" />
+
+                <Button Grid.Row="2" Grid.Column="0" Text="4" HorizontalOptions="FillAndExpand" />
+                <Button Grid.Row="2" Grid.Column="1" Text="5" HorizontalOptions="FillAndExpand" />
+                <Button Grid.Row="2" Grid.Column="2" Text="6" HorizontalOptions="FillAndExpand" />
+
+                <Button Grid.Row="3" Grid.Column="0" Text="1" HorizontalOptions="FillAndExpand" />
+                <Button Grid.Row="3" Grid.Column="1" Text="2" HorizontalOptions="FillAndExpand" />
+                <Button Grid.Row="3" Grid.Column="2" Text="3" HorizontalOptions="FillAndExpand" />
+
+                <Button Grid.Row="4" Grid.Column="1" Text="0" HorizontalOptions="FillAndExpand" />
+                <Button Grid.Row="4" Grid.Column="2" Text="." HorizontalOptions="FillAndExpand" />
+            </Grid>
         </StackLayout>
     </ContentPage.Content>
 </ContentPage>
