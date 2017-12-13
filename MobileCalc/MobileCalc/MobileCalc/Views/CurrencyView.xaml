@@ -2,12 +2,37 @@
 <ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
              x:Class="MobileCalc.Views.CurrencyView">
+    
+    <ContentPage.Resources>
+        <ResourceDictionary>
+            <Style x:Key="CurrencyValue" TargetType="Label">
+                <Setter Property="FontSize" Value="32" />
+            </Style>
+            <Style x:Key="CurrencySign" TargetType="Label">
+                <Setter Property="Margin" Value="0,7,0,0" />
+            </Style>
+        </ResourceDictionary>
+    </ContentPage.Resources>
+    
     <ContentPage.Content>
-        <StackLayout>
-            <Label Text="Welcome to Xamarin.Forms!"
-                VerticalOptions="StartAndExpand" 
-                HorizontalOptions="CenterAndExpand" />
-            
+        <StackLayout Margin="15">
+            <StackLayout Orientation="Horizontal">
+                <Label Text="$" 
+                       Style="{StaticResource CurrencySign}"
+                        />
+                <Label Text="0" 
+                       Style="{StaticResource CurrencyValue}"
+                       />
+            </StackLayout>
+            <StackLayout Orientation="Horizontal">
+                <Label Text="€" 
+                       Style="{StaticResource CurrencySign}"
+                       />
+                <Label Text="0" 
+                       Style="{StaticResource CurrencyValue}"
+                       />
+            </StackLayout>
+
             <Grid>
                 <Grid.RowDefinitions>
                     <RowDefinition Height="*" />
